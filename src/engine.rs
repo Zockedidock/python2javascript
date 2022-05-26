@@ -33,7 +33,8 @@ impl Engine
                 self.js_code.push_str("}\n");
             }
         }
-        println!("{}", self.js_code.replace(":", ""));
+        self.js_code = self.js_code.replace(":", "");
+        println!("{}", self.js_code);
     }
     fn get_ident(&mut self, line: String) -> usize
     {
@@ -70,7 +71,7 @@ impl Engine
         }
         self.js_code.push_str(&format!("{}\n", line));
     }
-    pub fn get_JS(self) -> String {
+    pub fn get_js(self) -> String {
         self.js_code
     }
 }

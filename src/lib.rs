@@ -27,5 +27,5 @@ pub fn compile(code: String) -> String {
     use crate::engine::Engine;
     let mut engine = Engine::new(code);
     engine.run();
-    engine.get_JS()
+    engine.get_js()
 }
