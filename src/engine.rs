@@ -9,7 +9,8 @@ pub struct Engine
 }
 impl Engine
 {
-    pub fn new(p_code: String) -> Self {
+    pub fn new(p_code: String) -> Self
+    {
         Engine {
             p_code,
             js_code: String::new(),
@@ -18,7 +19,8 @@ impl Engine
             close_brackets: 0,
         }
     }
-    pub fn run(&mut self) {
+    pub fn run(&mut self)
+    {
         let lines = self.p_code.clone();
         for line in lines.lines() {
             let line = line.to_string();
@@ -31,9 +33,10 @@ impl Engine
                 self.js_code.push_str("}\n");
             }
         }
-        println!("{}", self.js_code);
+        println!("{}", self.js_code.replace(":", ""));
     }
-    fn get_ident(&mut self, line: String) -> usize {
+    fn get_ident(&mut self, line: String) -> usize
+    {
         let mut indent = 0;
         for c in line.chars() {
             if c == ' ' {
@@ -44,7 +47,8 @@ impl Engine
         }
         indent
     }
-    fn check_indent(&mut self, line: String) {
+    fn check_indent(&mut self, line: String)
+    {
         let indent = self.get_ident(line);
         if self.current_indent < indent
         {
@@ -58,11 +62,15 @@ impl Engine
         }
         self.current_indent = indent;
     }
-    fn parse_line(&mut self, line: String) {
+    fn parse_line(&mut self, line: String)
+    {
         let line = line.trim();
         if line.is_empty() {
             self.js_code.push_str("");
         }
         self.js_code.push_str(&format!("{}\n", line));
+    }
+    pub fn get_JS(self) -> String {
+        self.js_code
     }
 }
